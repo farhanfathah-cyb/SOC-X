@@ -1,0 +1,4 @@
+// Sentinel: Windows account creation, requires appropriate auditing
+SecurityEvent
+| where TimeGenerated > ago(24h) and EventID == 4720
+| project TimeGenerated, Computer, Account, Activity

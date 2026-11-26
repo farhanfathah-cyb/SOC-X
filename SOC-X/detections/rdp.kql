@@ -1,0 +1,6 @@
+// Defender XDR advanced hunting: successful remote interactive logons
+DeviceLogonEvents
+| where Timestamp > ago(24h)
+| where ActionType == "LogonSuccess" and LogonType == "RemoteInteractive"
+| project Timestamp, DeviceName, AccountName, RemoteIP, LogonType
+| order by Timestamp desc

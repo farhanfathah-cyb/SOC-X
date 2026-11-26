@@ -1,0 +1,5 @@
+// Defender XDR advanced hunting
+UrlClickEvents
+| where Timestamp > ago(24h)
+| where ActionType == "ClickAllowed"
+| project Timestamp, AccountUpn, Url, ActionType, NetworkMessageId

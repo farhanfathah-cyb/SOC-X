@@ -1,0 +1,5 @@
+// Sentinel: candidate failed logon threshold; tune to environment
+SecurityEvent
+| where TimeGenerated > ago(1h) and EventID == 4625
+| summarize Failures=count() by Computer, Account, IpAddress, bin(TimeGenerated, 5m)
+| where Failures >= 5

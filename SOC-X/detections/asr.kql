@@ -1,0 +1,6 @@
+// Sentinel: requires Defender Operational events in WindowsEvent
+WindowsEvent
+| where TimeGenerated > ago(24h)
+| where Provider == "Microsoft-Windows-Windows Defender"
+| where EventID in (1121, 1122)
+| project TimeGenerated, Computer, EventID, EventData
